@@ -1,0 +1,23 @@
+{
+  "name": "fitness.api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2"
+  },
+  "author": "Dmitry Boyarchik",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "express": "^4.15.3",
+    "express-graphql": "^0.6.6",
+    "graphql": "^0.10.1",
+    "mongoose": "^4.10.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.11.0"
+  }
+}
