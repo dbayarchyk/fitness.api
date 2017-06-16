@@ -13,7 +13,11 @@ export default {
       type: new GraphQLNonNull(userInputType)
     }
   },
-  resolve(root, params) {
+  resolve(root, params, context) {
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
+
     const user = new UserModel(params.data);
 
     const newUser = user.save();

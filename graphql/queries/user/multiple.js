@@ -7,7 +7,11 @@ import UserModel from '../../../models/user';
 
 export default {
   type: new GraphQLList(userType),
-  resolve(root, params) {
+  resolve(root, params, context) {
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
+
     const users = UserModel.find().exec();
 
     if (!users) {

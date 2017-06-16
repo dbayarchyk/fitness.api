@@ -1,4 +1,5 @@
 import {
+  GraphQLNonNull,
   GraphQLID
 } from 'graphql';
 
@@ -8,13 +9,17 @@ import UserModel from '../../../models/user';
 export default {
   type: userType,
   args: {
-    id: {
-      name: 'id',
-      type: GraphQLID
+    _id: {
+      name: '_id',
+      type: new GraphQLNonNull(GraphQLID)
     }
   },
-  resolve(root, params) {
-    const removedUser = UserModel.findByIdAndRemove(params.id);
+  resolve(root, params, context) {
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
+
+    const removedUser = UserModel.findByIdAndRemove(params._id);
 
     if (!removedUser) {
       throw new Error('Error removing user');

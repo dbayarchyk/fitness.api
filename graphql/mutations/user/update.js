@@ -9,8 +9,8 @@ import UserModel from '../../../models/user';
 export default {
   type: userType,
   args: {
-    id: {
-      name: 'id',
+    _id: {
+      name: '_id',
       type: new GraphQLNonNull(GraphQLID)
     },
     data: {
@@ -18,9 +18,13 @@ export default {
       type: new GraphQLNonNull(userInputType)
     }
   },
-  resolve(root, params) {
-    return UserModel.findByIdAndUpdate(params.id, { $set: { ...params.data }})
-      .then(data => UserModel.findById(params.id).exec())
+  resolve(root, params, context) {
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
+
+    return UserModel.findByIdAndUpdate(params._id, { $set: { ...params.data }})
+      .then(data => UserModel.findById(params._id).exec())
       .catch(err => new Error('Could not update user data ', err));
   }
 }

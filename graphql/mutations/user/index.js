@@ -1,9 +1,9 @@
-import AddUser from './add';
-import RemoveUser from './remove';
-import UpdateUSer from './update';
+import addUser from './add';
+import removeUser from './remove';
+import updateUser from './update';
 
 export default {
-  AddUser,
-  RemoveUser,
-  UpdateUSer
+  addUser,
+  removeUser,
+  updateUser
 }

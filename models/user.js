@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
   avatarUrl: { type: String },
   age:       { type: Number },
   weight:    { type: Number }
-}, { collection: 'user', cotimestamps: true });
+}, { collection: 'users', timestamps: true });
 
 UserSchema.pre('save', function (next) {
   let user = this;

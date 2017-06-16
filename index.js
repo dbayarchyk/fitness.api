@@ -1,7 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import graphqlHTTP from 'express-graphql';
+import jwt from'express-jwt';
 
+import UserModel from './models/user';
 import config from './config';
 import schema from './graphql';
 
@@ -15,10 +17,22 @@ db.on('error', () => console.log('Failed to connect to database'))
 
 app.get('/', (req, res) => res.send('Hello world, this is Graph'));
 
-app.use('/graphql', graphqlHTTP(() => ({
+app.use('/graphql', jwt({
+  secret: config.JWT_SECRET,
+  credentialsRequired: false,
+}));
+app.use('/graphql', (req, res, done) => {
+  req.context = {
+    user: req.user,
+  }
+
+  done();
+});
+app.use('/graphql', graphqlHTTP(req => ({
   schema,
   graphiql: true,
-  pretty: true
+  pretty: true,
+  context: req.context
 })));
 
 app.listen(config.PORT, () => console.log(`Server is running on ${config.PORT}`));

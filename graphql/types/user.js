@@ -4,20 +4,24 @@ import {
   GraphQLNonNull,
   GraphQLString,
   GraphQLInt,
-  GraphQLID
+  GraphQLID,
+  GraphQLScalarType
 } from 'graphql';
 
 export const userType = new GraphQLObjectType({
   name: 'User',
   description: 'User api',
   fields: () => ({
-    _id:       { type: new GraphQLNonNull(GraphQLID) },
-    email:     { type: GraphQLString },
+    _id:       { type: GraphQLString },
+    email:     { type: new GraphQLNonNull(GraphQLString) },
     name:      { type: GraphQLString },
     surname:   { type: GraphQLString },
     avatarUrl: { type: GraphQLString },
     age:       { type: GraphQLInt },
-    weight:    { type: GraphQLInt }
+    weight:    { type: GraphQLInt },
+    role:      { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+    updatedAt: { type: GraphQLString }
   })
 });
 
@@ -31,6 +35,7 @@ export const userInputType = new GraphQLInputObjectType({
     surname:   { type: GraphQLString },
     avatarUrl: { type: GraphQLString },
     age:       { type: GraphQLInt },
-    weight:    { type: GraphQLInt }
+    weight:    { type: GraphQLInt },
+    role:      { type: GraphQLString },
   })
 });
