@@ -14,10 +14,6 @@ export default {
     }
   },
   resolve(root, params, context) {
-    if (!context.user) {
-      throw new Error('You have not access');
-    }
-
     const user = new UserModel(params.data);
 
     const newUser = user.save();
