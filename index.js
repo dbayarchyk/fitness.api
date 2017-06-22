@@ -17,12 +17,6 @@ db.on('error', () => console.log('Failed to connect to database'))
   .once('open', () => console.log('Connected to DB'));
 
 app.use(cors());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Allow-Methods", "OPTIONS, POST");
-  next();
-});
 
 app.get('/', (req, res) => res.send('Hello world, this is Graph'));
 
