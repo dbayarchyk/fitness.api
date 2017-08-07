@@ -12,14 +12,24 @@ const UserSchema = new mongoose.Schema({
   age:           { type: Number, required: true },
   height:        { type: Number, required: true, default: 0 },
   weight:        { type: Number, required: true, default: 0 },
-  bodyMassIndex: { type: Number, default: 0 }
+  bodyMassIndex: { type: Number, default: 0 },
+  weightHistory: [{
+    weight:      { type: Number, required: true, default: 0 },
+    date:        { type: Date, required: true, default: Date.now }
+  }]
 }, { collection: 'users', timestamps: true });
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', preSave);
+
+function preSave (next) {
   let user = this;
 
   if (user.isModified('height') || user.isModified('weight')) {
     user.bodyMassIndex = Math.round(user.weight / Math.pow(user.height / 100, 2));
+  }
+
+  if (user.isModified('weight')) {
+    user.weightHistory.push( { weight: user.weight });
   }
 
   if (!user.isModified('password')) {
@@ -40,7 +50,7 @@ UserSchema.pre('save', function (next) {
       next();
     });
   });
-});
+}
 
 UserSchema.methods.comparePassword = function (candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {

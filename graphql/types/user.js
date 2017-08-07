@@ -5,7 +5,8 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLID,
-  GraphQLScalarType
+  GraphQLScalarType,
+  GraphQLList
 } from 'graphql';
 
 export const userType = new GraphQLObjectType({
@@ -23,7 +24,17 @@ export const userType = new GraphQLObjectType({
     weight:        { type: GraphQLInt },
     role:          { type: GraphQLString },
     createdAt:     { type: GraphQLString },
-    updatedAt:     { type: GraphQLString }
+    updatedAt:     { type: GraphQLString },
+    weightHistory: { type: new GraphQLList(new GraphQLObjectType({
+        name: 'WeightHistory',
+        description: 'Weight History',
+        fields: () => ({
+          _id:      { type: GraphQLString },
+          date:     { type: GraphQLString },
+          weight:   { type: GraphQLInt }
+        })
+      }))
+    }
   })
 });
 

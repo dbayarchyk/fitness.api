@@ -23,8 +23,18 @@ export default {
       throw new Error('You have not access');
     }
 
-    return UserModel.findByIdAndUpdate(params._id, { $set: { ...params.data }})
-      .then(data => UserModel.findById(params._id).exec())
-      .catch(err => new Error('Could not update user data ', err));
+    return UserModel.findById(params._id).exec()
+      .then(user => {
+        Object.assign(user, { ...params.data });
+
+        user.save()
+          .then(data => UserModel.findById(params._id).exec())
+          .catch(err => new Error('Could not update user data ', err));
+      });
+
+    // TODO: Use it when mongoose will support pre findByIdAndUpdate method.
+    // return UserModel.findByIdAndUpdate(params._id, { $set: { ...params.data }})
+    //   .then(data => UserModel.findById(params._id).exec())
+    //   .catch(err => new Error('Could not update user data ', err));
   }
 }
