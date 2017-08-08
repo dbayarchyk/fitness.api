@@ -2,11 +2,11 @@ import addUser from './add';
 import removeUser from './remove';
 import updateUser from './update';
 
-import addUserFoodHistory from './foodHistory/add';
+import foodHistoryMutations from './foodHistory';
 
 export default {
   addUser,
   removeUser,
   updateUser,
-  addUserFoodHistory
+  ...foodHistoryMutations
 }
