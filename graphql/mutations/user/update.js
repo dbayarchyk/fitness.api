@@ -27,7 +27,7 @@ export default {
       .then(user => {
         Object.assign(user, { ...params.data });
 
-        user.save()
+        return user.save()
           .then(data => UserModel.findById(params._id).exec())
           .catch(err => new Error('Could not update user data ', err));
       });

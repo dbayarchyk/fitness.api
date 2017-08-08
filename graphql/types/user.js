@@ -6,8 +6,12 @@ import {
   GraphQLInt,
   GraphQLID,
   GraphQLScalarType,
-  GraphQLList
+  GraphQLList,
+  GraphQLFloat
 } from 'graphql';
+
+import { foodType } from './food';
+import { foodHistoryType } from './foodHistory';
 
 export const userType = new GraphQLObjectType({
   name: 'User',
@@ -34,7 +38,8 @@ export const userType = new GraphQLObjectType({
           weight:   { type: GraphQLInt }
         })
       }))
-    }
+    },
+    foodHistory: { type: new GraphQLList(foodHistoryType) }
   })
 });
 

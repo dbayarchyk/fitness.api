@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
+
 import config from '../config';
+import getBodyMassIndex from '../helpers/bodyMassIndex';
 
 const UserSchema = new mongoose.Schema({
   email:         { type: String, required: true, unique: true },
@@ -13,10 +15,23 @@ const UserSchema = new mongoose.Schema({
   height:        { type: Number, required: true, default: 0 },
   weight:        { type: Number, required: true, default: 0 },
   bodyMassIndex: { type: Number, default: 0 },
-  weightHistory: [{
+  weightHistory: [ {
     weight:      { type: Number, required: true, default: 0 },
     date:        { type: Date, required: true, default: Date.now }
-  }]
+  } ],
+  foodHistory:   [ {
+    foods:       [ {
+      food:      { type: mongoose.Schema.Types.ObjectId, ref: 'Food' },
+      weight:    { type: Number, required: true, default: 0 }
+    } ],
+    date:        { type: Date, required: true, default: Date.now },
+    nutrients:   {
+      proteins:  { type: Number, default: 0 },
+      carbohydrates: { type: Number, default: 0 },
+      fats:      { type: Number, default: 0 }
+    },
+    calorificValue: { type: Number, default: 0 }
+  } ]
 }, { collection: 'users', timestamps: true });
 
 UserSchema.pre('save', preSave);
@@ -25,7 +40,7 @@ function preSave (next) {
   let user = this;
 
   if (user.isModified('height') || user.isModified('weight')) {
-    user.bodyMassIndex = Math.round(user.weight / Math.pow(user.height / 100, 2));
+    user.bodyMassIndex = getBodyMassIndex(user.weight, user.height);
   }
 
   if (user.isModified('weight')) {
