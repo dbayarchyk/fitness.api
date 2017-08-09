@@ -9,7 +9,7 @@ import UserModel from '../../../../models/user';
 export default {
   type: new GraphQLList(foodHistoryType),
   args: {
-    userID: { name: 'userID', type: new GraphQLNonNull(GraphQLID) }
+    userId: { name: 'userId', type: new GraphQLNonNull(GraphQLID) }
   },
   resolve(root, params, context) {
     if (!context.user) {
