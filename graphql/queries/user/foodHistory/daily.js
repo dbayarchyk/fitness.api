@@ -17,7 +17,7 @@ export default {
     }
 
     return new Promise((resolve, reject) => {
-      UserModel.findById(params.userID).populate('foodHistory.foods.food').exec()
+      UserModel.findById(params.userId).populate('foodHistory.foods.food').exec()
         .then(user => {
           const now = new Date();
           const foodHistory = user.foodHistory.filter(
@@ -25,10 +25,10 @@ export default {
                                && foodHistoryItem.date.getMonth() === now.getMonth()
                                && foodHistoryItem.date.getFullYear() === now.getFullYear()
           );
-          console.log(user.foodHistory);
-          console.log(foodHistory);
-          resolve(foodHistory)
-        });
+
+          resolve(foodHistory);
+        })
+        .catch(err => new Error(`Could not find user with id ${params.userID}`, err));
     });
   }
 }

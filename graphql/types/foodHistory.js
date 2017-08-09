@@ -19,7 +19,7 @@ export const foodHistoryType = new GraphQLObjectType({
     _id:       { type: GraphQLString },
     foods:     { type: new GraphQLList(foodItemType) },
     date:      { type: GraphQLString },
-    nutrients: { type: new GraphQLList(new GraphQLObjectType({
+    nutrients: { type: new GraphQLObjectType({
         name: 'Nutrients',
         description: 'Nutrients',
         fields: () => ({
@@ -27,7 +27,7 @@ export const foodHistoryType = new GraphQLObjectType({
           carbohydrates:  { type: new GraphQLNonNull(GraphQLFloat) },
           fats:           { type: new GraphQLNonNull(GraphQLFloat) },
         })
-      }))
+      })
     },
     calorificValue: { type: new GraphQLNonNull(GraphQLFloat) }
   })
