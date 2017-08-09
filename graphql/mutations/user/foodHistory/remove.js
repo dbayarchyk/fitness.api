@@ -4,13 +4,13 @@ import {
 } from 'graphql';
 
 import { foodHistoryType } from '../../../types/foodHistory';
-import UserModel from '../../../models/user';
+import UserModel from '../../../../models/user';
 
 export default {
   type: foodHistoryType,
   args: {
-    _id: {
-      name: '_id',
+    userId: {
+      name: 'userId',
       type: new GraphQLNonNull(GraphQLID)
     },
     itemId: {
@@ -24,7 +24,7 @@ export default {
     }
 
     return new Promise((resolve, reject) => {
-      UserModel.findById(params._id).exec()
+      UserModel.findById(params.userId).exec()
         .then(user => {
           const foodHistoryItem = user.foodHistory.find(foodHistoryItem => foodHistoryItem._id === params.itemId);
 
@@ -32,7 +32,7 @@ export default {
 
           user.save()
             .then(data => resolve(foodHistoryItem))
-            .catch(err => throw new Error('Error removing user', err));
+            .catch(err => new Error('Error removing user', err));
         });
     });
   }

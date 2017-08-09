@@ -10,8 +10,8 @@ import FoodModel from '../../../../models/food';
 export default {
   type: foodHistoryType,
   args: {
-    _id: {
-      name: '_id',
+    userId: {
+      name: 'userId',
       type: new GraphQLNonNull(GraphQLID)
     },
     data: {
@@ -25,7 +25,7 @@ export default {
     }
 
     return new Promise((resolve, reject) => {
-      UserModel.findById(params._id).exec()
+      UserModel.findById(params.userId).exec()
         .then(user => {
           const foodIds = params.data.foods.map(foodItem => foodItem.food);
 
@@ -51,7 +51,7 @@ export default {
 
               user.save()
                 .then(data =>
-                  UserModel.findById(user._id).populate('foodHistory.foods.food').exec()
+                  UserModel.findById(user.userId).populate('foodHistory.foods.food').exec()
                     .then(data => resolve(data.foodHistory[data.foodHistory.length - 1]))
                 )
                 .catch(err => new Error('Could not update user data ', err));
