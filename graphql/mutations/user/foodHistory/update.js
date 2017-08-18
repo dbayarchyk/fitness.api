@@ -1,9 +1,9 @@
 import {
-  GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLNonNull
 } from 'graphql';
+import { foodHistoryInputType, foodHistoryType } from '../../../types/foodHistory';
 
-import { foodHistoryType, foodHistoryInputType } from '../../../types/foodHistory';
 import UserModel from '../../../../models/user';
 
 export default {
@@ -42,9 +42,9 @@ export default {
               UserModel.findById(user.userId).populate('foodHistory.foods.food').exec()
                 .then(user => resolve(user.foodHistory.find(foodHistoryItem => params._id === foodHistoryItem._id)))
             })
-            .catch(err => new Error('Could not update user data ', err));
+            .catch(err => reject(new Error('Could not update user data ', err)));
         })
-        .catch(err => new Error('Could not update user data ', err));
+        .catch(err => reject(new Error('Could not update user data ', err)));
     });
   }
 }

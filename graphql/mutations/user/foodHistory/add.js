@@ -1,11 +1,11 @@
 import {
-  GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLNonNull
 } from 'graphql';
+import { foodHistoryInputType, foodHistoryType } from '../../../types/foodHistory';
 
-import { foodHistoryType, foodHistoryInputType } from '../../../types/foodHistory';
-import UserModel from '../../../../models/user';
 import FoodModel from '../../../../models/food';
+import UserModel from '../../../../models/user';
 
 export default {
   type: foodHistoryType,
@@ -50,13 +50,14 @@ export default {
               user.foodHistory = [ ...user.foodHistory, foodHistoryItem ];
 
               user.save()
-                .then(data =>
-                  UserModel.findById(user.userId).populate('foodHistory.foods.food').exec()
-                    .then(data => resolve(data.foodHistory[data.foodHistory.length - 1]))
+                .then(data => 
+                  UserModel.findById(data._id).populate('foodHistory.foods.food').exec()
+                    .then(data => {console.log(data.foodHistory[data.foodHistory.length - 1]); resolve(data.foodHistory[data.foodHistory.length - 1]) })
+                    .catch(err => reject(new Error('Could not update user data ', err)))
                 )
-                .catch(err => new Error('Could not update user data ', err));
+                .catch(err => reject(new Error('Could not update user data ', err)));
             })
-            .catch(err => new Error('Could not update user data ', err));
+            .catch(err => reject(new Error('Could not update user data ', err)));
         });
     });
   }

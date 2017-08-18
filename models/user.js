@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
-
 import config from '../config';
 import getBodyMassIndex from '../helpers/bodyMassIndex';
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   email:         { type: String, required: true, unique: true },
@@ -17,14 +16,14 @@ const UserSchema = new mongoose.Schema({
   bodyMassIndex: { type: Number, default: 0 },
   weightHistory: [ {
     weight:      { type: Number, required: true, default: 0 },
-    date:        { type: Date, required: true, default: Date.now }
+    date:        { type: Date, default: Date.now }
   } ],
   foodHistory:   [ {
     foods:       [ {
       food:      { type: mongoose.Schema.Types.ObjectId, ref: 'Food' },
       weight:    { type: Number, required: true, default: 0 }
     } ],
-    date:        { type: Date, required: true, default: Date.now },
+    date:        { type: Date, default: Date.now },
     nutrients:   {
       proteins:  { type: Number, default: 0 },
       carbohydrates: { type: Number, default: 0 },

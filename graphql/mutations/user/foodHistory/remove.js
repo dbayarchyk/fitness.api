@@ -1,10 +1,10 @@
 import {
-  GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLNonNull
 } from 'graphql';
 
-import { foodHistoryType } from '../../../types/foodHistory';
 import UserModel from '../../../../models/user';
+import { foodHistoryType } from '../../../types/foodHistory';
 
 export default {
   type: foodHistoryType,
@@ -32,7 +32,7 @@ export default {
 
           user.save()
             .then(data => resolve(foodHistoryItem))
-            .catch(err => new Error('Error removing user', err));
+            .catch(err => reject(new Error('Error removing user', err)));
         });
     });
   }
