@@ -1,13 +1,13 @@
 import {
-  GraphQLObjectType,
-  GraphQLInputObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLID,
-  GraphQLScalarType,
+  GraphQLInputObjectType,
+  GraphQLInt,
   GraphQLList,
-  GraphQLFloat
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLScalarType,
+  GraphQLString
 } from 'graphql';
 
 import { foodType } from './food';
@@ -40,6 +40,17 @@ export const foodHistoryInputType = new GraphQLInputObjectType({
     _id:   { type: GraphQLString },
     foods: { type: new GraphQLList(foodItemInputType) },
     date:  { type: GraphQLString },
+    nutrients: { type: new GraphQLInputObjectType({
+        name: 'NutrientsInput',
+        description: 'Nutrients input',
+        fields: () => ({
+          proteins:       { type: new GraphQLNonNull(GraphQLFloat) },
+          carbohydrates:  { type: new GraphQLNonNull(GraphQLFloat) },
+          fats:           { type: new GraphQLNonNull(GraphQLFloat) },
+        })
+      })
+    },
+    calorificValue: { type: new GraphQLNonNull(GraphQLFloat) }
   })
 });
 

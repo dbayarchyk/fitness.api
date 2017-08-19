@@ -1,9 +1,10 @@
 import {
-  GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLNonNull
 } from 'graphql';
-import { foodType } from '../../types/food';
+
 import FoodModel from '../../../models/food';
+import { foodType } from '../../types/food';
 
 export default {
   type: foodType,

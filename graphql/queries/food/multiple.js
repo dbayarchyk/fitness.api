@@ -1,11 +1,12 @@
 import {
-  GraphQLList,
   GraphQLID,
   GraphQLInputObjectType,
+  GraphQLList,
   GraphQLString
 } from 'graphql';
-import { foodType } from '../../types/food';
+
 import FoodModel from '../../../models/food';
+import { foodType } from '../../types/food';
 
 export default {
   type: new GraphQLList(foodType),
