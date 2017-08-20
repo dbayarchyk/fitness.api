@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   role:          { type: String, default: 'user' },
   avatarUrl:     { type: String },
   age:           { type: Number, required: true },
+  sex:           { type: String, required: true },
   height:        { type: Number, required: true, default: 0 },
   weight:        { type: Number, required: true, default: 0 },
   bodyMassIndex: { type: Number, default: 0 },

@@ -50,7 +50,7 @@ export const foodHistoryInputType = new GraphQLInputObjectType({
         })
       })
     },
-    calorificValue: { type: new GraphQLNonNull(GraphQLFloat) }
+    calorificValue: { type: GraphQLFloat }
   })
 });
 

@@ -1,17 +1,17 @@
 import {
-  GraphQLObjectType,
-  GraphQLInputObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLID,
-  GraphQLScalarType,
+  GraphQLInputObjectType,
+  GraphQLInt,
   GraphQLList,
-  GraphQLFloat
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLScalarType,
+  GraphQLString
 } from 'graphql';
 
-import { foodType } from './food';
 import { foodHistoryType } from './foodHistory';
+import { foodType } from './food';
 
 export const userType = new GraphQLObjectType({
   name: 'User',
@@ -23,6 +23,7 @@ export const userType = new GraphQLObjectType({
     surname:       { type: GraphQLString },
     avatarUrl:     { type: GraphQLString },
     age:           { type: GraphQLInt },
+    sex:           { type: GraphQLString },
     height:        { type: GraphQLInt },
     bodyMassIndex: { type: GraphQLInt },
     weight:        { type: GraphQLInt },
@@ -53,6 +54,7 @@ export const userInputType = new GraphQLInputObjectType({
     surname:   { type: GraphQLString },
     avatarUrl: { type: GraphQLString },
     age:       { type: GraphQLInt },
+    sex:       { type: GraphQLString },
     height:    { type: GraphQLInt },
     weight:    { type: GraphQLInt },
     role:      { type: GraphQLString },
