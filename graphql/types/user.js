@@ -39,8 +39,7 @@ export const userType = new GraphQLObjectType({
           weight:   { type: GraphQLInt }
         })
       }))
-    },
-    foodHistory: { type: new GraphQLList(foodHistoryType) }
+    }
   })
 });
 

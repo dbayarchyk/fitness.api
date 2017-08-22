@@ -19,19 +19,6 @@ const UserSchema = new mongoose.Schema({
     weight:      { type: Number, required: true, default: 0 },
     date:        { type: Date, default: Date.now }
   } ],
-  foodHistory:   [ {
-    foods:       [ {
-      food:      { type: mongoose.Schema.Types.ObjectId, ref: 'Food' },
-      weight:    { type: Number, required: true, default: 0 }
-    } ],
-    date:        { type: Date, default: Date.now },
-    nutrients:   {
-      proteins:  { type: Number, default: 0 },
-      carbohydrates: { type: Number, default: 0 },
-      fats:      { type: Number, default: 0 }
-    },
-    calorificValue: { type: Number, default: 0 }
-  } ]
 }, { collection: 'users', timestamps: true });
 
 UserSchema.pre('save', preSave);

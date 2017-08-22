@@ -26,6 +26,7 @@ export const foodInputType = new GraphQLInputObjectType({
   name: 'FoodInput',
   description: 'Insert Food',
   fields: () => ({
+    _id:            { type: GraphQLString },
     name:           { type: new GraphQLNonNull(GraphQLString) },
     avatarUrl:      { type: GraphQLString },
     category:       { type: new GraphQLNonNull(GraphQLString) },
