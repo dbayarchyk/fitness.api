@@ -3,20 +3,21 @@ import config from '../config';
 import getBodyMassIndex from '../helpers/bodyMassIndex';
 import mongoose from 'mongoose';
 import FoodModel from './food';
+import roundDecimal from '../helpers/roundDecimal';
 
 const FoodHistorySchema = new mongoose.Schema({
   userId:          { type: mongoose.Schema.Types.ObjectId, ref: 'User' },      
   foods:           [ {
     product:       { type: mongoose.Schema.Types.ObjectId, ref: 'Food' },
-    weight:        { type: Number, required: true, default: 0 }
+    weight:        { type: Number, required: true, default: 0, set: v => roundDecimal(v), get: v => roundDecimal(v) }
   } ],
   date:            { type: Date, default: Date.now },
   nutrients:       {
-    proteins:      { type: Number, default: 0 },
-    carbohydrates: { type: Number, default: 0 },
-    fats:          { type: Number, default: 0 }
+    proteins:      { type: Number, default: 0, set: v => roundDecimal(v, 2), get: v => roundDecimal(v, 2) },
+    carbohydrates: { type: Number, default: 0, set: v => roundDecimal(v, 2), get: v => roundDecimal(v, 2) },
+    fats:          { type: Number, default: 0, set: v => roundDecimal(v, 2), get: v => roundDecimal(v, 2) }
   },
-  calorificValue: { type: Number, default: 0 }
+  calorificValue: { type: Number, default: 0, set: v => roundDecimal(v), get: v => roundDecimal(v)}
 }, { collection: 'foodHistory', timestamps: true });
 
 FoodHistorySchema.pre('save', function preSave(next) {
