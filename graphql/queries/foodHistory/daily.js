@@ -16,7 +16,7 @@ export default {
       throw new Error('You have not access');
     }
 
-    const foodHistory =  FoodHistoryModel.find({ userId: params.userId }).exec();
+    const foodHistory =  FoodHistoryModel.find({ userId: params.userId }).populate('foods.product').exec();
 
     if (!foodHistory) {
       throw new Error('Error while fetching daily user food history...');
