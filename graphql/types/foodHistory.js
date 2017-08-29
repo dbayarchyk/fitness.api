@@ -11,6 +11,8 @@ import {
 } from 'graphql';
 
 import { foodType } from './food';
+import { nutrientsType, nutrientsInputType } from './nutrients';
+import { foodItemType, foodItemInputType } from './foodItem';
 
 export const foodHistoryType = new GraphQLObjectType({
   name: 'FoodHistory',
@@ -20,16 +22,7 @@ export const foodHistoryType = new GraphQLObjectType({
     userId:    { type: GraphQLString },
     foods:     { type: new GraphQLList(foodItemType) },
     date:      { type: GraphQLString },
-    nutrients: { type: new GraphQLObjectType({
-        name: 'Nutrients',
-        description: 'Nutrients',
-        fields: () => ({
-          proteins:       { type: new GraphQLNonNull(GraphQLFloat) },
-          carbohydrates:  { type: new GraphQLNonNull(GraphQLFloat) },
-          fats:           { type: new GraphQLNonNull(GraphQLFloat) },
-        })
-      })
-    },
+    nutrients: { type: nutrientsType },
     calorificValue: { type: new GraphQLNonNull(GraphQLFloat) }
   })
 });
@@ -42,34 +35,7 @@ export const foodHistoryInputType = new GraphQLInputObjectType({
     userId: { type: GraphQLString },
     foods:  { type: new GraphQLList(foodItemInputType) },
     date:   { type: GraphQLString },
-    nutrients: { type: new GraphQLInputObjectType({
-        name: 'NutrientsInput',
-        description: 'Nutrients input',
-        fields: () => ({
-          proteins:       { type: GraphQLFloat },
-          carbohydrates:  { type: GraphQLFloat },
-          fats:           { type: GraphQLFloat },
-        })
-      })
-    },
+    nutrients: { type: nutrientsInputType },
     calorificValue: { type: GraphQLFloat }
-  })
-});
-
-const foodItemType = new GraphQLObjectType({
-  name: 'FoodItem',
-  description: 'Foods',
-  fields: () => ({
-    product: { type: foodType },
-    weight:  { type: GraphQLInt }
-  })
-});
-
-const foodItemInputType = new GraphQLInputObjectType({
-  name: 'FoodItemInput',
-  description: 'Foods input fro food history',
-  fields: () => ({
-    product: { type: GraphQLString },
-    weight:  { type: GraphQLInt }
   })
 });
