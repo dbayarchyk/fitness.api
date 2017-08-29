@@ -12,7 +12,8 @@ import {
 
 import { foodHistoryType } from './foodHistory';
 import { foodType } from './food';
-
+import { foodPlanType } from './foodPlan';
+ 
 export const userType = new GraphQLObjectType({
   name: 'User',
   description: 'User api',
@@ -39,7 +40,8 @@ export const userType = new GraphQLObjectType({
           weight:   { type: GraphQLInt }
         })
       }))
-    }
+    },
+    foodPlan:      { type: foodPlanType }
   })
 });
 
@@ -57,5 +59,6 @@ export const userInputType = new GraphQLInputObjectType({
     height:    { type: GraphQLInt },
     weight:    { type: GraphQLInt },
     role:      { type: GraphQLString },
+    foodPlan:  { type: GraphQLString }
   })
 });

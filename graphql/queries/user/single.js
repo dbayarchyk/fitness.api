@@ -15,6 +15,6 @@ export default {
       throw new Error('You have not access');
     }
 
-    return UserModel.findById(params._id).exec();
+    return UserModel.findById(params._id).populate('foodPlan').exec();
   }
 }

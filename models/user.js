@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
     weight:      { type: Number, required: true, default: 0 },
     date:        { type: Date, default: Date.now }
   } ],
+  foodPlan:      { type: mongoose.Schema.Types.ObjectId, ref: 'FoodPlan' }
 }, { collection: 'users', timestamps: true });
 
 UserSchema.pre('save', preSave);
