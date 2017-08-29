@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt-nodejs';
-import config from '../config';
 import roundDecimal from '../helpers/roundDecimal';
 
 const FoodSchema = new mongoose.Schema({
