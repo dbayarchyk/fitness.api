@@ -28,7 +28,7 @@ export default {
     }
 
     const foods = FoodPlanModel.find({
-      name: { '$regex': params.query.name, '$options': 'i' }
+      name: { '$regex': params.query ? params.query.name : '', '$options': 'i' }
     }).populate('meals.foods.product').exec();
 
     if (!foods) {
