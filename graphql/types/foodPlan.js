@@ -48,7 +48,7 @@ const mealType = new GraphQLObjectType({
   })
 });
 
-const mealInputType = new GraphQLObjectType({
+const mealInputType = new GraphQLInputObjectType({
   name: 'MealInput',
   description: 'Meal input',
   fields: () => ({
