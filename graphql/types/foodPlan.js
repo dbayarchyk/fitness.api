@@ -20,6 +20,7 @@ export const foodPlanType = new GraphQLObjectType({
   fields: () => ({
     _id:            { type: GraphQLString },
     name:           { type: new GraphQLNonNull(GraphQLString) },
+    avatarUrl:      { type: GraphQLString },
     meals:          { type: new GraphQLList(mealType) },
     nutrients:      { type: nutrientsType },
     calorificValue: { type: new GraphQLNonNull(GraphQLFloat) }
@@ -32,6 +33,7 @@ export const foodPlanInputType = new GraphQLInputObjectType({
   fields: () => ({
     _id:            { type: GraphQLString },
     name:           { type: GraphQLString },
+    avatarUrl:      { type: GraphQLString },
     meals:          { type: new GraphQLList(mealInputType) },
     nutrients:      { type: nutrientsInputType },
     calorificValue: { type: GraphQLFloat }
@@ -44,6 +46,7 @@ const mealType = new GraphQLObjectType({
   fields: () => ({
     foods:     { type: new GraphQLList(foodItemType) },
     date:      { type: GraphQLString },
+    calorificValue: { type: GraphQLFloat },
     nutrients: { type: nutrientsType }
   })
 });
@@ -54,6 +57,7 @@ const mealInputType = new GraphQLInputObjectType({
   fields: () => ({
     foods:     { type: new GraphQLList(foodItemInputType) },
     date:      { type: GraphQLString },
+    calorificValue: { type: GraphQLFloat },
     nutrients: { type: nutrientsInputType }
   })
 });
