@@ -19,7 +19,10 @@ export default {
         fields: () => ({
           name:      { type: GraphQLString, defaultValue: '' }
         })
-      })
+      }),
+      defaultValue: {
+        name: ''
+      }
     }
   },
   resolve(root, params, context) {

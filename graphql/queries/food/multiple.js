@@ -20,7 +20,11 @@ export default {
           name:      { type: GraphQLString, defaultValue: '' },
           category:  { type: GraphQLString, defaultValue: '' }
         })
-      })
+      }),
+      defaultValue: {
+        name: '',
+        category: ''
+      }
     }
   },
   resolve(root, params, context) {

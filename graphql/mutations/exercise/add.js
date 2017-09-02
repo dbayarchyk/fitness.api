@@ -14,6 +14,10 @@ export default {
     }
   },
   resolve(root, params, context) {
+    if (!context.exercise) {
+      throw new Error('You have not access');
+    }
+
     const exercise = new ExerciseModel(params.data);
 
     const newExercise = exercise.save();
