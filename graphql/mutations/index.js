@@ -4,6 +4,7 @@ import foodMutation from './food';
 import foodHistoryMutation from './foodHistory';
 import exerciseMutation from './exercise';
 import foodPlanMutation from './foodPlan';
+import trainingPlanMutation from './trainingPlan';
 
 export default {
   ...userMutation,
@@ -11,5 +12,6 @@ export default {
   ...foodMutation,
   ...foodHistoryMutation,
   ...exerciseMutation,
-  ...foodPlanMutation
+  ...foodPlanMutation,
+  ...trainingPlanMutation
 }

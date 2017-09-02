@@ -14,9 +14,9 @@ export default {
     }
   },
   resolve(root, params, context) {
-    // if (!context.user) {
-    //   throw new Error('You have not access');
-    // }
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
 
     const foodPlan = new FoodPlanModel(params.data);
 
