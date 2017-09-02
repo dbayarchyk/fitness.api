@@ -16,6 +16,8 @@ export const trainingPlanType = new GraphQLObjectType({
   fields: () => ({
     _id:        { type: GraphQLString },
     name:       { type: new GraphQLNonNull(GraphQLString) },
+    avatarUrl:  { type: GraphQLString },
+    photos:     { type: new GraphQLList(GraphQLString) },
     sex:        { type: GraphQLString },
     complexity: { type: GraphQLFloat },
     trainings:  { type: new GraphQLList(trainingType) }
@@ -28,6 +30,8 @@ export const trainingPlanInputType = new GraphQLInputObjectType({
   fields: () => ({
     _id:        { type: GraphQLString },
     name:       { type: new GraphQLNonNull(GraphQLString) },
+    avatarUrl:  { type: GraphQLString },
+    photos:     { type: new GraphQLList(GraphQLString) },
     sex:        { type: GraphQLString },
     complexity: { type: GraphQLFloat },
     trainings:  { type: new GraphQLList(trainingInputType) }
