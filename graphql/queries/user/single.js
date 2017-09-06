@@ -20,6 +20,10 @@ export default {
         path: 'foodPlan',
         populate: { path: 'meals.foods.product' }
       })
+      .populate({
+        path: 'trainingPlan',
+        populate: { path: 'trainings.exerciseAproaches.exercise' }
+      })
       .exec();
   }
 }
