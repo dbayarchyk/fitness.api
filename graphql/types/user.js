@@ -13,6 +13,7 @@ import {
 import { foodHistoryType } from './foodHistory';
 import { foodType } from './food';
 import { foodPlanType } from './foodPlan';
+import { trainingPlanType } from './trainingPlan';
  
 export const userType = new GraphQLObjectType({
   name: 'User',
@@ -41,7 +42,8 @@ export const userType = new GraphQLObjectType({
         })
       }))
     },
-    foodPlan:      { type: foodPlanType }
+    foodPlan:      { type: foodPlanType },
+    trainingPlan:  { type: trainingPlanType }
   })
 });
 
@@ -49,16 +51,17 @@ export const userInputType = new GraphQLInputObjectType({
   name: 'UserInput',
   description: 'Insert User',
   fields: () => ({
-    email:     { type: GraphQLString },
-    password:  { type: GraphQLString },
-    name:      { type: GraphQLString },
-    surname:   { type: GraphQLString },
-    avatarUrl: { type: GraphQLString },
-    age:       { type: GraphQLInt },
-    sex:       { type: GraphQLString },
-    height:    { type: GraphQLInt },
-    weight:    { type: GraphQLInt },
-    role:      { type: GraphQLString },
-    foodPlan:  { type: GraphQLString }
+    email:        { type: GraphQLString },
+    password:     { type: GraphQLString },
+    name:         { type: GraphQLString },
+    surname:      { type: GraphQLString },
+    avatarUrl:    { type: GraphQLString },
+    age:          { type: GraphQLInt },
+    sex:          { type: GraphQLString },
+    height:       { type: GraphQLInt },
+    weight:       { type: GraphQLInt },
+    role:         { type: GraphQLString },
+    foodPlan:     { type: GraphQLString },
+    trainingPlan: { type: GraphQLString }
   })
 });
