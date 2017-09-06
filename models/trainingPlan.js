@@ -29,6 +29,8 @@ TrainingPlanSchema.pre('save', function (next) {
             populatedTrainingPlan.complexity += exerciseAproache.exercise.complexity * exerciseAproache.count / 10
           )
         );
+
+        populatedTrainingPlan.complexity /= populatedTrainingPlan.trainings.length;
       })
       .catch(err => new Error('Could not find this exercise, err'));
   }
