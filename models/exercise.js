@@ -7,7 +7,7 @@ const ExerciseSchema = new mongoose.Schema({
   photos:         [ { type: String } ],
   muscules:       [ { type: String, required: true } ],
   description:    { type: String },
-  complexity:     { type: String, required: true },
+  complexity:     { type: Number, required: true },
   video:          { type: String }
 }, { collection: 'exercises', timestamps: true });
 

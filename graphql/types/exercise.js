@@ -18,7 +18,7 @@ export const exerciseType = new GraphQLObjectType({
     photos:         { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
     muscules:       { type: new GraphQLList(GraphQLString) },
     description:    { type: GraphQLString },
-    complexity:     { type: GraphQLString },
+    complexity:     { type: GraphQLInt },
     video:          { type: GraphQLString }
   })
 });
@@ -33,7 +33,7 @@ export const exerciseInputType = new GraphQLInputObjectType({
     photos:         { type: new GraphQLList(GraphQLString) },
     muscules:       { type: new GraphQLList(GraphQLString) },
     description:    { type: GraphQLString },
-    complexity:     { type: GraphQLString },
+    complexity:     { type: GraphQLInt },
     video:          { type: GraphQLString }
   })
 });
