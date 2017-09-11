@@ -38,7 +38,7 @@ export const trainingPlanInputType = new GraphQLInputObjectType({
   })
 });
 
-const trainingType = new GraphQLObjectType({
+export const trainingType = new GraphQLObjectType({
   name: 'Training',
   description: 'Training api',
   fields: () => ({
