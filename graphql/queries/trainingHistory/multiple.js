@@ -30,7 +30,7 @@ export default {
     }
 
     const trainingHistoryItems = TrainingHistoryModel.find({
-      userId: { '$regex': params.query ? params.query.userId : '', '$options': 'i' }
+      userId: params.query ? params.query.userId : ''
     }).populate('exerciseAproaches.exercise').exec();
 
     if (!trainingHistoryItems) {

@@ -14,7 +14,8 @@ export const trainingHistoryType = new GraphQLObjectType({
   fields: () => ({
     _id:               { type: GraphQLString },
     userId:            { type: GraphQLString },
-    exerciseAproaches: { type: new GraphQLList(exerciseAproacheType) }
+    exerciseAproaches: { type: new GraphQLList(exerciseAproacheType) },
+    trainingIdInPlan:  { type: GraphQLString }
   })
 });
 
@@ -24,6 +25,7 @@ export const trainingHistoryInputType = new GraphQLInputObjectType({
   fields: () => ({
     _id:               { type: GraphQLString },
     userId:            { type: new GraphQLNonNull(GraphQLString) },
-    exerciseAproaches: { type: new GraphQLList(exerciseAproacheInputType) }
+    exerciseAproaches: { type: new GraphQLList(exerciseAproacheInputType) },
+    trainingIdInPlan:  { type: GraphQLString }
   })
 });
