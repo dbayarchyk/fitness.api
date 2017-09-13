@@ -58,7 +58,7 @@ const trainingInputType = new GraphQLInputObjectType({
   })
 });
 
-const exerciseAproacheType = new GraphQLObjectType({
+export const exerciseAproacheType = new GraphQLObjectType({
   name: 'ExerciseAproache',
   description: 'ExerciseAproache api',
   fields: () => ({
@@ -68,7 +68,7 @@ const exerciseAproacheType = new GraphQLObjectType({
   })
 });
 
-const exerciseAproacheInputType = new GraphQLInputObjectType({
+export const exerciseAproacheInputType = new GraphQLInputObjectType({
   name: 'ExerciseAproacheInput',
   description: 'Insert ExerciseAproache',
   fields: () => ({

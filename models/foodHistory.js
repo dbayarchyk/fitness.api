@@ -1,6 +1,3 @@
-import bcrypt from 'bcrypt-nodejs';
-import config from '../config';
-import getBodyMassIndex from '../helpers/bodyMassIndex';
 import mongoose from 'mongoose';
 import FoodModel from './food';
 import roundDecimal from '../helpers/roundDecimal';

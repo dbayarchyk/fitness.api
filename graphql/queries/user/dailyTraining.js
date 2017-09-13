@@ -11,9 +11,9 @@ export default {
     _id: { name: '_id', type: new GraphQLNonNull(GraphQLID) }
   },
   resolve(root, params, context) {
-    // if (!context.user) {
-    //   throw new Error('You have not access');
-    // }
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
 
     return new Promise((resolve, reject) => {
       UserModel.findById(params._id)
