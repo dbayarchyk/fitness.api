@@ -16,7 +16,7 @@ export default {
         name: 'TrainingHistoryQueryParams',
         description: 'Training history query params',
         fields: () => ({
-          userId: { type: GraphQLString, defaultValue: '' }
+          userId: { type: GraphQLID, defaultValue: '' }
         })
       }),
       defaultValue: {
