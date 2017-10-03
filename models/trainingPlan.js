@@ -5,7 +5,7 @@ import roundDecimal from '../helpers/roundDecimal';
 const TrainingPlanSchema = new mongoose.Schema({
   name:            { type: String, required: true },
   avatarUrl:       { type: String },
-  sex:             { type: String },
+  gender:          { type: String },
   complexity:      { type: Number, set: v => roundDecimal(v), get: v => roundDecimal(v) },
   trainings:       [ { 
     date: { type: Date },

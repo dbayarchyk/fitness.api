@@ -1,7 +1,10 @@
 import bcrypt from 'bcrypt-nodejs';
+import mongoose from 'mongoose';
+
+import WeightHistory from './weightHistory';
 import config from '../config';
 import getBodyMassIndex from '../helpers/bodyMassIndex';
-import mongoose from 'mongoose';
+import * as PURPOSE from '../constants/purpose';
 
 const UserSchema = new mongoose.Schema({
   email:         { type: String, required: true, unique: true },
@@ -11,14 +14,35 @@ const UserSchema = new mongoose.Schema({
   role:          { type: String, default: 'user' },
   avatarUrl:     { type: String },
   age:           { type: Number, required: true },
-  sex:           { type: String, required: true },
+  gender:           { 
+    type: String, 
+    required: true, 
+    enum: {                 
+      values: [ 
+        'male', 
+        'female'
+      ],
+      message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+    } 
+  },
   height:        { type: Number, required: true, default: 0 },
   weight:        { type: Number, required: true, default: 0 },
+  physicalState: { type: String },
+  purpose:       { 
+    type: String, 
+    required: true, 
+    enum: { 
+      values: [ 
+        PURPOSE.INCREASE_MUSCLE_MASS, 
+        PURPOSE.INCREASE_MUSCLE_STRENGTH, 
+        PURPOSE.WEIGHT_LOSS,
+        PURPOSE.CREATING_A_BODY_RELIEF,
+        PURPOSE.MAINTAINING_THE_FORM_ALREADY_ACHIEVED
+      ],
+      message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+    } 
+  },
   bodyMassIndex: { type: Number, default: 0 },
-  weightHistory: [ {
-    weight:      { type: Number, required: true, default: 0 },
-    date:        { type: Date, default: Date.now }
-  } ],
   foodPlan:      { type: mongoose.Schema.Types.ObjectId, ref: 'FoodPlan' },
   trainingPlan:  { type: mongoose.Schema.Types.ObjectId, ref: 'TrainingPlan' }
 }, { collection: 'users', timestamps: true });
@@ -33,7 +57,12 @@ function preSave (next) {
   }
 
   if (user.isModified('weight')) {
-    user.weightHistory.push( { weight: user.weight });
+    const weightHistoryItem = new WeightHistory({
+      userId: user._id,
+      weight: user.weight
+    });
+
+    weightHistoryItem.save();
   }
 
   if (!user.isModified('password')) {

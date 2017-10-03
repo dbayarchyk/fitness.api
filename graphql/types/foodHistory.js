@@ -2,11 +2,9 @@ import {
   GraphQLFloat,
   GraphQLID,
   GraphQLInputObjectType,
-  GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLScalarType,
   GraphQLString
 } from 'graphql';
 

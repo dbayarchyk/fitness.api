@@ -6,7 +6,6 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLScalarType,
   GraphQLString
 } from 'graphql';
 
@@ -25,23 +24,14 @@ export const userType = new GraphQLObjectType({
     surname:       { type: GraphQLString },
     avatarUrl:     { type: GraphQLString },
     age:           { type: GraphQLInt },
-    sex:           { type: GraphQLString },
+    gender:        { type: GraphQLString },
     height:        { type: GraphQLInt },
     bodyMassIndex: { type: GraphQLInt },
-    weight:        { type: GraphQLInt },
+    weight:        { type: GraphQLFloat },
     role:          { type: GraphQLString },
     createdAt:     { type: GraphQLString },
     updatedAt:     { type: GraphQLString },
-    weightHistory: { type: new GraphQLList(new GraphQLObjectType({
-        name: 'WeightHistory',
-        description: 'Weight History',
-        fields: () => ({
-          _id:      { type: GraphQLString },
-          date:     { type: GraphQLString },
-          weight:   { type: GraphQLInt }
-        })
-      }))
-    },
+    purpose:       { type: GraphQLString },
     foodPlan:      { type: foodPlanType },
     trainingPlan:  { type: trainingPlanType }
   })
@@ -57,9 +47,10 @@ export const userInputType = new GraphQLInputObjectType({
     surname:      { type: GraphQLString },
     avatarUrl:    { type: GraphQLString },
     age:          { type: GraphQLInt },
-    sex:          { type: GraphQLString },
+    gender:       { type: GraphQLString },
     height:       { type: GraphQLInt },
-    weight:       { type: GraphQLInt },
+    weight:       { type: GraphQLFloat },
+    purpose:      { type: GraphQLString },
     role:         { type: GraphQLString },
     foodPlan:     { type: GraphQLString },
     trainingPlan: { type: GraphQLString }

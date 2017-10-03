@@ -26,6 +26,6 @@ export default {
       throw new Error('Error adding exercise');
     }
 
-    return newExercise;
+    return newExercise.populate('muscles').execPopulate();
   }
 }

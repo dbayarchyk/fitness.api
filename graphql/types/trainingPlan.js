@@ -18,7 +18,7 @@ export const trainingPlanType = new GraphQLObjectType({
     name:       { type: new GraphQLNonNull(GraphQLString) },
     avatarUrl:  { type: GraphQLString },
     photos:     { type: new GraphQLList(GraphQLString) },
-    sex:        { type: GraphQLString },
+    gender:        { type: GraphQLString },
     complexity: { type: GraphQLFloat },
     trainings:  { type: new GraphQLList(trainingType) }
   })
@@ -32,7 +32,7 @@ export const trainingPlanInputType = new GraphQLInputObjectType({
     name:       { type: new GraphQLNonNull(GraphQLString) },
     avatarUrl:  { type: GraphQLString },
     photos:     { type: new GraphQLList(GraphQLString) },
-    sex:        { type: GraphQLString },
+    gender:        { type: GraphQLString },
     complexity: { type: GraphQLFloat },
     trainings:  { type: new GraphQLList(trainingInputType) }
   })

@@ -24,11 +24,11 @@ const BMR_CONSTANTS_BY_SEX = {
 // TODO: move is to user modal
 const ACTIVITY_COEFFICIENT = 1.55;
 
-const getBMR = ({ sex, weight, height, age }) =>
-  BMR_CONSTANTS_BY_SEX[sex].coefficient 
-  + BMR_CONSTANTS_BY_SEX[sex].weight * weight 
-  + BMR_CONSTANTS_BY_SEX[sex].height * height
-  - BMR_CONSTANTS_BY_SEX[sex].age * age;
+const getBMR = ({ gender, weight, height, age }) =>
+  BMR_CONSTANTS_BY_SEX[gender].coefficient 
+  + BMR_CONSTANTS_BY_SEX[gender].weight * weight 
+  + BMR_CONSTANTS_BY_SEX[gender].height * height
+  - BMR_CONSTANTS_BY_SEX[gender].age * age;
 
 export default {
   type: dailyNutritionRateType,

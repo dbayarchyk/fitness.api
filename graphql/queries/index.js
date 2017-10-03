@@ -5,6 +5,8 @@ import foodPlanQuery from './foodPlan';
 import exerciseQuery from './exercise';
 import trainingPlanQuery from './trainingPlan';
 import trainingHistoryQuery from './trainingHistory';
+import weightHistoryQuery from './weightHistory';
+import muscleQuery from './muscle';
 
 export default {
   ...userQuery,
@@ -13,5 +15,7 @@ export default {
   ...foodPlanQuery,
   ...exerciseQuery,
   ...trainingPlanQuery,
-  ...trainingHistoryQuery
+  ...trainingHistoryQuery,
+  ...weightHistoryQuery,
+  ...muscleQuery
 }

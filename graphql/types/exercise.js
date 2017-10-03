@@ -8,6 +8,8 @@ import {
   GraphQLList
 } from 'graphql';
 
+import { muscleType, muscleInputType } from './muscle';
+
 export const exerciseType = new GraphQLObjectType({
   name: 'Exercise',
   description: 'Exercise api',
@@ -16,7 +18,7 @@ export const exerciseType = new GraphQLObjectType({
     name:           { type: new GraphQLNonNull(GraphQLString) },
     avatarUrl:      { type: GraphQLString },
     photos:         { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
-    muscules:       { type: new GraphQLList(GraphQLString) },
+    muscules:       { type: new GraphQLList(muscleType) },
     description:    { type: GraphQLString },
     complexity:     { type: GraphQLInt },
     video:          { type: GraphQLString }
@@ -31,7 +33,7 @@ export const exerciseInputType = new GraphQLInputObjectType({
     name:           { type: new GraphQLNonNull(GraphQLString) },
     avatarUrl:      { type: GraphQLString },
     photos:         { type: new GraphQLList(GraphQLString) },
-    muscules:       { type: new GraphQLList(GraphQLString) },
+    muscules:       { type: new GraphQLList(muscleInputType) },
     description:    { type: GraphQLString },
     complexity:     { type: GraphQLInt },
     video:          { type: GraphQLString }

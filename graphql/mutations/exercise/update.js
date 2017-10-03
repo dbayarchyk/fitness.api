@@ -28,7 +28,7 @@ export default {
         Object.assign(exercise, { ...params.data });
 
         return exercise.save()
-          .then(data => ExerciseModel.findById(params._id).exec())
+          .then(data => ExerciseModel.findById(params._id).populate('muscles').exec())
           .catch(err => new Error('Could not update exercise data ', err));
       });
 

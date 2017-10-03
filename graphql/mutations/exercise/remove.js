@@ -25,6 +25,6 @@ export default {
       throw new Error('Error removing exercise');
     }
 
-    return removedExercise;
+    return removedExercise.populate('muscles').execPopulate();
   }
 }

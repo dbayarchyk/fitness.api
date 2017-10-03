@@ -6,6 +6,7 @@ import trainingHistoryMutation from './trainingHistory';
 import exerciseMutation from './exercise';
 import foodPlanMutation from './foodPlan';
 import trainingPlanMutation from './trainingPlan';
+import muscleMutation from './muscle';
 
 export default {
   ...userMutation,
@@ -15,5 +16,6 @@ export default {
   ...trainingHistoryMutation,
   ...exerciseMutation,
   ...foodPlanMutation,
-  ...trainingPlanMutation
+  ...trainingPlanMutation,
+  ...muscleMutation
 }
