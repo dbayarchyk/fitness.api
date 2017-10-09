@@ -5,7 +5,7 @@ import roundDecimal from '../helpers/roundDecimal';
 
 const FoodPlanSchema = new mongoose.Schema({
   name:            { type: String, required: true },
-  avatarUrl:       { type: String },
+  avatarUrl:       { type: String, default: 'https://image.freepik.com/free-icon/precious-diamond-jewelry_318-31428.jpg' },
   meals:           [ { 
     foods: [ {
       product: { type: mongoose.Schema.Types.ObjectId, ref: 'Food', required: true },

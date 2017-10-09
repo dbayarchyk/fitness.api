@@ -4,7 +4,7 @@ import roundDecimal from '../helpers/roundDecimal';
 
 const TrainingPlanSchema = new mongoose.Schema({
   name:            { type: String, required: true },
-  avatarUrl:       { type: String },
+  avatarUrl:       { type: String, default: 'https://image.freepik.com/free-icon/precious-diamond-jewelry_318-31428.jpg' },
   gender:          { type: String },
   complexity:      { type: Number, set: v => roundDecimal(v), get: v => roundDecimal(v) },
   trainings:       [ { 
@@ -31,6 +31,8 @@ TrainingPlanSchema.pre('save', function (next) {
         );
 
         populatedTrainingPlan.complexity /= populatedTrainingPlan.trainings.length;
+
+        next(populatedTrainingPlan);
       })
       .catch(err => new Error('Could not find this exercise, err'));
   }

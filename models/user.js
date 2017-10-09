@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
   name:          { type: String, },
   surname:       { type: String },
   role:          { type: String, default: 'user' },
-  avatarUrl:     { type: String },
+  avatarUrl:     { type: String, default: 'https://image.freepik.com/free-icon/precious-diamond-jewelry_318-31428.jpg' },
   age:           { type: Number, required: true },
   gender:           { 
     type: String, 
