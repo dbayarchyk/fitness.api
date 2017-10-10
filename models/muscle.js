@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import MUSCLES_GROUPS from '../constants/muscleGroups';
+import * as MUSCLES_GROUP from '../constants/muscleGroups';
 
 const MuscleSchema = new mongoose.Schema({
   name: { 
@@ -11,7 +11,14 @@ const MuscleSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: { 
-      values: MUSCLES_GROUPS,
+      values: [
+        MUSCLES_GROUP.PECTORALIS,
+        MUSCLES_GROUP.BACK,
+        MUSCLES_GROUP.BICEPS,
+        MUSCLES_GROUP.TRICEPS,
+        MUSCLES_GROUP.LEGS,
+        MUSCLES_GROUP.SHOULDERS
+      ],
       message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
     } 
   }

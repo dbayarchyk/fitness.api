@@ -1,0 +1,26 @@
+import * as GROUP from './muscleGroups';
+
+export default {
+  2: [ 
+    [ GROUP.PECTORALIS, GROUP.BACK, GROUP.BICEPS ], 
+    [ GROUP.TRICEPS, GROUP.LEGS, GROUP.SHOULDERS ]
+  ],
+  3: [
+    [ GROUP.PECTORALIS, GROUP.BACK ],
+    [ GROUP.BICEPS, GROUP.TRICEPS ], 
+    [ GROUP.LEGS, GROUP.SHOULDERS ]
+  ],
+  4: [
+    [ GROUP.PECTORALIS ],
+    [ GROUP.BICEPS, GROUP.TRICEPS ], 
+    [ GROUP.BACK, GROUP.SHOULDERS ],
+    [ GROUP.LEGS ]
+  ],
+  5: [
+    [ GROUP.PECTORALIS ],
+    [ GROUP.BICEPS ],
+    [ GROUP.BACK, GROUP.TRICEPS ],
+    [ GROUP.SHOULDERS ],
+    [ GROUP.LEGS ]
+  ]
+}
