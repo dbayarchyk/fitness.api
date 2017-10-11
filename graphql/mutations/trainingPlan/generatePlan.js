@@ -1,6 +1,6 @@
 import {
   GraphQLNonNull,
-  GraphQLString
+  GraphQLID
 } from 'graphql';
 
 import { trainingPlanType, trainingPlanInputType } from '../../types/trainingPlan';
@@ -13,13 +13,13 @@ export default {
   args: {
     userId: {
       name: 'userId',
-      type: new GraphQLNonNull(GraphQLString)
+      type: new GraphQLNonNull(GraphQLID)
     }
   },
   resolve(root, params, context) {
-    // if (!context.user) {
-    //   throw new Error('You have not access');
-    // }
+    if (!context.user) {
+      throw new Error('You have not access');
+    }
 
     const newTrainingPlan = new Promise((resolve, reject) => {
       UserModel.findById(params.userId).exec()
