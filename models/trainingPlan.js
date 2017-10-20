@@ -13,7 +13,8 @@ const TrainingPlanSchema = new mongoose.Schema({
       exercise: { type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' },
       count: { type: Number }
     } ]
-  } ]
+  } ],
+  isPrivate:       { type: Boolean, default: false }
 }, { collection: 'trainingPlans', timestamps: true });
 
 TrainingPlanSchema.pre('save', function (next) {

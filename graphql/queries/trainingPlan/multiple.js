@@ -2,7 +2,8 @@ import {
   GraphQLID,
   GraphQLInputObjectType,
   GraphQLList,
-  GraphQLString
+  GraphQLString,
+  GraphQLBoolean
 } from 'graphql';
 
 import TrainingPlanModel from '../../../models/trainingPlan';
@@ -17,7 +18,8 @@ export default {
         name: 'TrainingPlanQueryParams',
         description: 'Training plan query params',
         fields: () => ({
-          name: { type: GraphQLString, defaultValue: '' }
+          name: { type: GraphQLString, defaultValue: '' },
+          isPrivate: { type: GraphQLBoolean, defaultValue: false }
         })
       })
     }
@@ -28,7 +30,8 @@ export default {
     }
 
     const trainings = TrainingPlanModel.find({
-      name: { '$regex': params.query ? params.query.name : '', '$options': 'i' }
+      name: { '$regex': params.query ? params.query.name : '', '$options': 'i' },
+      isPrivate: params.query ? params.query.isPrivate : false
     }).populate('meals.trainings.product').exec();
 
     if (!trainings) {
