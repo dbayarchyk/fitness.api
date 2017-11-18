@@ -25,14 +25,11 @@ export default {
         })
         .exec();
 
-      const trainingHistorypromise = TrainingHistoryModel
+      const trainingHistoryPromise = TrainingHistoryModel
         .find({ userId:  params._id }).exec()
 
-      Promise.all([ userPromise, trainingHistorypromise ])
-        .then(responses => {
-          const user = responses[0];
-          const trainingHistoryItems = responses[1];
-
+      Promise.all([ userPromise, trainingHistoryPromise ])
+        .then(([ user, trainingHistoryItems ]) => {
           const now = new Date();
           
           const training = user.trainingPlan.trainings

@@ -21,7 +21,7 @@ export default {
         })
       }),
       defaultValue: {
-        name: ''
+        name: '',
       }
     }
   },
@@ -32,7 +32,7 @@ export default {
 
     const exercises = ExerciseModel.find({
       name: { '$regex': params.query.name, '$options': 'i' }
-    }).exec();
+    }).populate('muscules').exec();
 
     if (!exercises) {
       throw new Error('Error while fetching exercises...');
