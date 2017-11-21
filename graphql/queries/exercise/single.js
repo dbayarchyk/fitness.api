@@ -16,6 +16,6 @@ export default {
       throw new Error('You have not access');
     }
 
-    return ExerciseModel.findById(params._id).exec();
+    return ExerciseModel.findById(params._id).populate('muscules').exec();
   }
 }
