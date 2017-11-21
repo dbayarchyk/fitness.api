@@ -15,7 +15,7 @@ export default {
     }
   },
   resolve(root, params, context) {
-    if (!context.muscle) {
+    if (!context.user) {
       throw new Error('You have not access');
     }
 
