@@ -33,7 +33,7 @@ export default {
             .then(populatedExercise => resolve(populatedExercise))
             .catch(err => reject(new Error('Could not populate exercise data ', err)))
         })
-        .catch(err => eject(new Error('Could not create exercise ', err)));
+        .catch(err => reject(new Error('Could not create exercise ', err)));
     });
   }
 }
