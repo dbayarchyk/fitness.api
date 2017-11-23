@@ -5,6 +5,7 @@ import {
 
 import { exerciseType } from '../../types/exercise';
 import ExerciseModel from '../../../models/exercise';
+import { Error } from 'mongoose';
 
 export default {
   type: exerciseType,
@@ -15,7 +16,7 @@ export default {
     }
   },
   resolve(root, params, context) {
-    if (!context.exercise) {
+    if (!context.user) {
       throw new Error('You have not access');
     }
 
@@ -25,6 +26,14 @@ export default {
       throw new Error('Error removing exercise');
     }
 
-    return removedExercise.populate('muscles').execPopulate();
+    return new Promise((resolve, reject) => {
+      removedExercise
+        .then(exercise => {
+          ExerciseModel.populate(exercise, { path: '' })
+            .then(populatedExercise => resolve(populatedExercise))
+            .catch(err => reject(new Error('Could not populate exericse data ', err)));
+        })
+        .catch(err => reject(new Error('Could not remove exericse ', err)));
+    })
   }
 }
