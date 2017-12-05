@@ -25,22 +25,24 @@ export default {
         })
         .exec();
 
+      const now = moment().startOf('day');
+
       const trainingHistoryPromise = TrainingHistoryModel
-        .find({ userId:  params._id }).exec()
+        .find({ 
+          userId: params._id,
+          date: { 
+            $gte: now,
+          },
+        }).exec()
 
       Promise.all([ userPromise, trainingHistoryPromise ])
         .then(([ user, trainingHistoryItems ]) => {
-          const now = new Date();
           
-          const training = user.trainingPlan.trainings
-            .find(training => 
-              training.date.getDay() === now.getDay() && !trainingHistoryItems.find(
-                trainingHistoryItem => {
-                  // TODO: Compare ids in another way.
-                  return trainingHistoryItem.trainingIdInPlan.$oid === training._id.$oid
-                }
-              )
-            );
+          let training = null;
+          if (!trainingHistoryItems.length) {
+            training = user.trainingPlan.trainings
+              .find(training => training.date.getDay() === now.getDay());
+          }
 
           resolve(training);
         })

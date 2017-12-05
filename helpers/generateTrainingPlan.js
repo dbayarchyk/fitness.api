@@ -49,11 +49,17 @@ const getExerciseAproaches = (exercises, musclesGroups, trainingPlanConfig) => {
   const exerciseCountPerGroup = parseInt(exerciseCount / musclesGroups.length);
 
   const exercisesByMusclesGroups = [];
+  musclesGroups.forEach((musclesGroup, musclesGroupIndex) => {   
+    exercisesByMusclesGroups[musclesGroupIndex] = exercisesByMusclesGroups[musclesGroupIndex] || [];
 
-  musclesGroups.forEach((musclesGroup, musclesGroupIndex) => {
-    exercisesByMusclesGroups[musclesGroupIndex] = exercises.filter(
-      (exercise, exerciseIndex) => exercise.muscules.find(muscule => muscule.group === musclesGroup) && exerciseIndex < exerciseCountPerGroup
-    )
+    exercises.forEach((exercise) => {
+      if (exercisesByMusclesGroups[musclesGroupIndex].length <= exerciseCountPerGroup) {
+        const isCorrectMuscleGroup = !!exercise.muscules.find(muscule => muscule.group === musclesGroup)
+        if (isCorrectMuscleGroup) {
+          exercisesByMusclesGroups[musclesGroupIndex].push(exercise);
+        }
+      }
+    });
   });
 
   switch(method) {

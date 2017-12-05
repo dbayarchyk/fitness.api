@@ -26,16 +26,16 @@ TrainingPlanSchema.pre('save', function (next) {
         populatedTrainingPlan.complexity = 0;
         
         populatedTrainingPlan.trainings.forEach(training =>
-          training.exerciseAproaches.forEach(exerciseAproache =>
+          training.exerciseAproaches.forEach((exerciseAproache) => {
             populatedTrainingPlan.complexity += exerciseAproache.exercise.complexity * exerciseAproache.count / 10
-          )
+          })
         );
 
         populatedTrainingPlan.complexity /= populatedTrainingPlan.trainings.length;
 
         next(populatedTrainingPlan);
       })
-      .catch(err => new Error('Could not find this exercise, err'));
+      .catch(err => { console.log(err);return new Error('Could not find this exercises ', err) });
   }
 });
 

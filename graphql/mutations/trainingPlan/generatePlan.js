@@ -29,7 +29,7 @@ export default {
               const trainingPlan = new TrainingPlanModel(generatedTrainingPlan);
 
               trainingPlan.name = `User-${user._id} training plan-${trainingPlan._id}`;
-              
+
               trainingPlan.save()
                 .then(createdTrainingPlan => {
                   user.trainingPlan = createdTrainingPlan._id
