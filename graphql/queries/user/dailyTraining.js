@@ -6,6 +6,8 @@ import { trainingType } from '../../types/trainingPlan';
 import UserModel from '../../../models/user';
 import TrainingHistoryModel from '../../../models/trainingHistory';
 
+import moment from './moment';
+
 export default {
   type: trainingType,
   args: {
