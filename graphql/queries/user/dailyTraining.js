@@ -43,7 +43,7 @@ export default {
           let training = null;
           if (!trainingHistoryItems.length) {
             training = user.trainingPlan.trainings
-              .find(training => training.date.getDay() === now.getDay());
+              .find(training => training.date.getDay() === now.day());
           }
 
           resolve(training);
